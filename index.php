@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 
-$sqlAllArticles = "SELECT * FROM `articles`";
+$sqlAllArticles = "SELECT * FROM articles JOIN category ON cat_id = catId;";
 $result = mysqli_query($conn, $sqlAllArticles);
 $articles = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -52,6 +52,7 @@ $data = mysqli_fetch_assoc($deleteOne);
     <article>
       <h1 class="article-title"><?php echo ucfirst($article["title"]) ?></h1>
       <img class="image" src="<?php echo $article["image"] ?>" alt="">
+      <p class="content"><?php echo $article["cat_name"] ?></p>
       <p class="content"><?php echo $articleContent ?></p>
       <div class="footer">
         <div class="infos">

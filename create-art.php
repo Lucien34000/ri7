@@ -3,15 +3,17 @@ include 'config.php';
 
 $title = mysqli_real_escape_string($conn, $_REQUEST['title']);
 $image = $_REQUEST['image'];
+$cat_id = $_REQUEST['cat_id'];
 $content = mysqli_real_escape_string($conn, $_REQUEST['content']);
 $author = mysqli_real_escape_string($conn, $_REQUEST['author']);
 
 if (count($_POST) > 0) {
-  $newArt = "INSERT INTO articles (title, image, content, author) VALUES ('$title', '$image', '$content', '$author')";
-  //var_dump($newArt);die;
+  $newArt = "INSERT INTO articles (title, image, content, author, cat_id) VALUES ('$title', '$image', '$content', '$author', '$cat_id')";
+  var_dump($newArt);
   $q = mysqli_query($conn, $newArt);
+  var_dump($q);
   $data = mysqli_fetch_assoc($q);
-  //var_dump($data);
+  var_dump($data);
 }
 
 ?>
@@ -43,6 +45,15 @@ if (count($_POST) > 0) {
           <div class="align-input">
             <label for="image" class="label-style">Ajouter une image :</label>
             <input type="text" name="image" id="image" style="width:300px;">
+          </div>
+          <div class="align-input">
+            <label for="cat_id" class="label-style" style="width: 200px; margin-right:20px;">Sélectionnez une catégorie :</label>
+            <select name="cat_id" id="cat_id">
+              <option value="">--Please choose an option--</option>
+              <option value="1">Catégorie 1</option>
+              <option value="2">Catégorie 2</option>
+              <option value="3">Catégorie 3</option>
+          </select>
           </div>
           <div class="align-input">
             <label for="content" class="label-style">Contenu :</label>
